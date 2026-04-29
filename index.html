@@ -197,6 +197,7 @@
       <button class="cert-tab" onclick="switchTab('data',event)">Data Analysis</button>
       <button class="cert-tab" onclick="switchTab('web',event)">Web Development</button>
       <button class="cert-tab" onclick="switchTab('science',event)">Data Science</button>
+      <button class="cert-tab" onclick="switchTab('other',event)">Other</button>
     </div>
     <div id="cert-panels"></div>
   </section>
@@ -268,13 +269,14 @@
     'AI & Machine Learning': 'ai',
     'Data Analysis': 'data',
     'Web Development': 'web',
-    'Data Science': 'science'
+    'Data Science': 'science',
+    'Other': 'other'
   };
 
   /* ── RENDER CERTIFICATES dari data.js ── */
   function renderCertPanels() {
     const container = document.getElementById('cert-panels');
-    const tabs = { all: [], ai: [], data: [], web: [], science: [] };
+    const tabs = { all: [], ai: [], data: [], web: [], science: [], other: [] };
 
     Object.entries(certsData).forEach(([key, c]) => {
       const tabKey = certTabMap[c.category] || 'all';
@@ -288,7 +290,7 @@
       if (tabs[tabKey] !== undefined) tabs[tabKey].push(card);
     });
 
-    const tabOrder = ['all', 'ai', 'data', 'web', 'science'];
+    const tabOrder = ['all', 'ai', 'data', 'web', 'science', 'other'];
     container.innerHTML = tabOrder.map(tab =>
       `<div class="cert-panel cert-grid${tab === 'all' ? ' active' : ''}" id="tab-${tab}">${tabs[tab].join('')}</div>`
     ).join('');
