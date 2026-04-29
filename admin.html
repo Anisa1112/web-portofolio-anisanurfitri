@@ -895,6 +895,7 @@
               <option value="Data Analysis">Data Analysis</option>
               <option value="Web Development">Web Development</option>
               <option value="Data Science">Data Science</option>
+               <option value="other">Other</option>
             </select>
           </div>
           <div class="form-group"><label>Year</label><input type="text" id="cert-year" placeholder="2025" /></div>
@@ -927,7 +928,7 @@
       let currentStackTags = [];
       let currentProjFilter = "all";
       let currentCertFilter = "all";
-      const catLabels = { ai: "AI & ML", data: "Data Analysis", web: "Web Development", science: "Data Science" };
+      const catLabels = { ai: "AI & ML", data: "Data Analysis", web: "Web Development", science: "Data Science", other: "Other" };
 
       /* ── NAVIGATION ── */
       function switchPage(page) {
