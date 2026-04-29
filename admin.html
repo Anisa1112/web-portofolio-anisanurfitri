@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel – Anisa Portfolio</title>
+    <script src="data.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --surface: #161616;
+        --surface2: #1e1e1e;
+        --border: #2a2a2a;
+        --accent: #f5ff40;
+        --text: #f0ede6;
+        --muted: #666;
+        --danger: #ff4444;
+        --success: #5dff8a;
+        --font-display: "Bebas Neue", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        width: 256px;
+        min-height: 100vh;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+      }
+      .sidebar-logo {
+        padding: 32px 28px 22px;
+        border-bottom: 1px solid var(--border);
+      }
+      .sidebar-logo h1 {
+        font-family: var(--font-display);
+        font-size: 38px;
+        letter-spacing: 2px;
+        color: var(--text);
+        line-height: 1;
+      }
+      .sidebar-logo h1 span {
+        color: var(--accent);
+      }
+      .sidebar-logo p {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 4px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .sidebar-nav {
+        flex: 1;
+        padding: 18px 14px;
+      }
+      .nav-section-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 14px 12px 6px;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        transition: all 0.15s;
+        margin-bottom: 2px;
+      }
+      .nav-item:hover {
+        background: var(--surface2);
+        color: var(--text);
+      }
+      .nav-item.active {
+        background: var(--accent);
+        color: #000;
+        font-weight: 700;
+      }
+      .nav-item .icon {
+        font-size: 14px;
+        width: 20px;
+        text-align: center;
+      }
+      .sidebar-footer {
+        padding: 18px;
+        border-top: 1px solid var(--border);
+      }
+      .download-btn {
+        width: 100%;
+        background: var(--accent);
+        color: #000;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 12px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: opacity 0.15s;
+      }
+      .download-btn:hover {
+        opacity: 0.85;
+      }
+
+      /* MAIN */
+      .main {
+        margin-left: 256px;
+        flex: 1;
+        padding: 40px 36px;
+        max-width: calc(100vw - 256px);
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      /* PAGE HEADER */
+      .page-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--border);
+      }
+      .page-header h2 {
+        font-family: var(--font-display);
+        font-size: 52px;
+        letter-spacing: 2px;
+        line-height: 1;
+      }
+      .page-header h2 span {
+        color: var(--accent);
+      }
+      .page-header p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+        letter-spacing: 0.5px;
+      }
+      .add-btn {
+        background: var(--accent);
+        color: #000;
+        border: none;
+        padding: 11px 22px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+        white-space: nowrap;
+      }
+      .add-btn:hover {
+        opacity: 0.85;
+      }
+
+      /* FILTER */
+      .filter-strip {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 7px 18px;
+        border-radius: 20px;
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .filter-btn:hover {
+        border-color: #555;
+        color: var(--text);
+      }
+      .filter-btn.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(245, 255, 64, 0.07);
+      }
+
+      /* STATS */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 22px 24px;
+      }
+      .stat-card .num {
+        font-family: var(--font-display);
+        font-size: 52px;
+        color: var(--accent);
+        letter-spacing: -1px;
+        line-height: 1;
+      }
+      .stat-card .lbl {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 6px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      /* CARDS */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+        gap: 16px;
+      }
+      .data-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 22px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .data-card:hover {
+        border-color: #3c3c3c;
+        transform: translateY(-2px);
+      }
+      .card-tag {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        background: rgba(245, 255, 64, 0.09);
+        border: 1px solid rgba(245, 255, 64, 0.22);
+        border-radius: 20px;
+        color: var(--accent);
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+      .data-card h4 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 7px;
+        line-height: 1.35;
+      }
+      .data-card p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .card-meta {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .meta-pill {
+        font-size: 11px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        padding: 3px 9px;
+        border-radius: 20px;
+        color: var(--text);
+      }
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+      }
+      .card-actions button {
+        flex: 1;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .card-actions button:hover {
+        background: var(--surface2);
+        border-color: #444;
+      }
+      .card-actions button.del {
+        color: var(--danger);
+        border-color: rgba(255, 68, 68, 0.35);
+      }
+      .card-actions button.del:hover {
+        background: rgba(255, 68, 68, 0.09);
+      }
+      .link-status {
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+      .link-status.linked {
+        background: rgba(93, 255, 138, 0.09);
+        color: var(--success);
+        border: 1px solid rgba(93, 255, 138, 0.22);
+      }
+      .link-status.unlinked {
+        background: rgba(255, 68, 68, 0.09);
+        color: #ff8888;
+        border: 1px solid rgba(255, 68, 68, 0.25);
+      }
+
+      /* MODAL */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(6px);
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 36px;
+        width: 580px;
+        max-width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-box h3 {
+        font-family: var(--font-display);
+        font-size: 34px;
+        letter-spacing: 1px;
+        margin-bottom: 28px;
+      }
+      .modal-box h3 span {
+        color: var(--accent);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 7px;
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 11px 14px;
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+      }
+      .form-group select option {
+        background: var(--surface2);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 96px;
+      }
+      .stack-input-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 8px 10px;
+        min-height: 46px;
+        cursor: text;
+        transition: border-color 0.15s;
+      }
+      .stack-input-wrapper:focus-within {
+        border-color: var(--accent);
+      }
+      .stack-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: var(--accent);
+        color: #000;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: 20px;
+      }
+      .stack-tag button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        color: #000;
+        padding: 0;
+      }
+      .stack-input-wrapper input {
+        border: none;
+        background: transparent;
+        outline: none;
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 13px;
+        flex: 1;
+        min-width: 80px;
+        padding: 2px 4px;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        justify-content: flex-end;
+      }
+      .btn-cancel {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 11px 24px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .btn-cancel:hover {
+        color: var(--text);
+        border-color: #555;
+      }
+      .btn-save {
+        background: var(--accent);
+        color: #000;
+        border: none;
+        padding: 11px 28px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+      .btn-save:hover {
+        opacity: 0.85;
+      }
+
+      /* GUIDE */
+      .guide-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 28px;
+      }
+      .guide-box h3 {
+        font-family: var(--font-display);
+        font-size: 24px;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+      }
+      .guide-box h3 span {
+        color: var(--accent);
+      }
+      .guide-step {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .guide-step:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .guide-step .snum {
+        font-family: var(--font-display);
+        font-size: 32px;
+        color: var(--accent);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 30px;
+      }
+      .guide-step strong {
+        color: var(--text);
+      }
+      code {
+        color: var(--accent);
+        font-size: 12px;
+        background: rgba(245, 255, 64, 0.08);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+
+      /* DOWNLOAD SECTION */
+      .dl-section {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 28px;
+        margin-bottom: 20px;
+      }
+      .dl-section h3 {
+        font-family: var(--font-display);
+        font-size: 22px;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      .dl-section h3 span {
+        color: var(--accent);
+      }
+      .dl-section p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+      .dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--accent);
+        color: #000;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+        letter-spacing: 0.5px;
+      }
+      .dl-btn:hover {
+        opacity: 0.85;
+      }
+      .dl-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+      .steps-list {
+        margin-top: 24px;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+      }
+      .steps-list h4 {
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+      }
+      .step-item {
+        display: flex;
+        gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        align-items: flex-start;
+      }
+      .step-item:last-child {
+        border-bottom: none;
+      }
+      .step-num {
+        font-family: var(--font-display);
+        font-size: 26px;
+        color: var(--accent);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 24px;
+      }
+      .step-item strong {
+        color: var(--text);
+      }
+      .preview-box {
+        background: #0a0a0a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px 18px;
+        font-family: "Courier New", monospace;
+        font-size: 11.5px;
+        color: #777;
+        overflow-x: auto;
+        max-height: 220px;
+        overflow-y: auto;
+        white-space: pre;
+        line-height: 1.8;
+        margin-top: 16px;
+      }
+
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--accent);
+        color: #000;
+        padding: 13px 22px;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 13px;
+        z-index: 9999;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* EMPTY */
+      .empty-state {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 56px 32px;
+        color: var(--muted);
+      }
+      .empty-state .big {
+        font-family: var(--font-display);
+        font-size: 56px;
+        color: var(--border);
+        letter-spacing: 4px;
+        margin-bottom: 12px;
+      }
+      .empty-state p {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h1>ADMIN<span>.</span></h1>
+        <p>Portfolio Manager</p>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Menu</div>
+        <div class="nav-item active" onclick="switchPage('dashboard')"><span class="icon">◼</span>Dashboard</div>
+        <div class="nav-item" onclick="switchPage('projects')"><span class="icon">📁</span>Projects</div>
+        <div class="nav-item" onclick="switchPage('certificates')"><span class="icon">🎓</span>Certificates</div>
+        <div class="nav-section-label">Output</div>
+        <div class="nav-item" onclick="switchPage('download')"><span class="icon">💾</span>Download data.js</div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="download-btn" onclick="downloadDataJS()">⬇ Download data.js</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h2>DASH<span>BOARD</span></h2>
+            <p>Overview of your portfolio content</p>
+          </div>
+        </div>
+        <div class="stats-bar">
+          <div class="stat-card">
+            <div class="num" id="stat-projects">0</div>
+            <div class="lbl">Total Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" id="stat-certs">0</div>
+            <div class="lbl">Certificates</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" id="stat-linked">0</div>
+            <div class="lbl">Links Active</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">4</div>
+            <div class="lbl">Categories</div>
+          </div>
+        </div>
+        <div class="guide-box">
+          <h3>✦ CARA <span>PAKAI</span></h3>
+          <div class="guide-step">
+            <div class="snum">1</div>
+            <div>Edit data project dan sertifikat di halaman <strong>Projects</strong> dan <strong>Certificates</strong>.</div>
+          </div>
+          <div class="guide-step">
+            <div class="snum">2</div>
+            <div>Buka halaman <strong>Download data.js</strong>, klik tombol download — file <code>data.js</code> baru akan tersimpan.</div>
+          </div>
+          <div class="guide-step">
+            <div class="snum">3</div>
+            <div>Replace file <code>data.js</code> lama di folder GitHub kamu dengan yang baru, lalu <code>git push</code>. Selesai!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="page" id="page-projects">
+        <div class="page-header">
+          <div>
+            <h2>MY <span>PROJECTS</span></h2>
+            <p>Manage your featured work</p>
+          </div>
+          <button class="add-btn" onclick="openProjectModal()">+ Add Project</button>
+        </div>
+        <div class="filter-strip">
+          <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+          <button class="filter-btn" onclick="filterProjects('ai', this)">AI & ML</button>
+          <button class="filter-btn" onclick="filterProjects('data', this)">Data Analysis</button>
+          <button class="filter-btn" onclick="filterProjects('web', this)">Web Dev</button>
+          <button class="filter-btn" onclick="filterProjects('science', this)">Data Science</button>
+        </div>
+        <div class="cards-grid" id="projects-grid"></div>
+      </div>
+
+      <!-- CERTIFICATES -->
+      <div class="page" id="page-certificates">
+        <div class="page-header">
+          <div>
+            <h2>MY <span>CERTIFICATES</span></h2>
+            <p>Manage credentials and verification links</p>
+          </div>
+          <button class="add-btn" onclick="openCertModal()">+ Add Certificate</button>
+        </div>
+        <div class="filter-strip">
+          <button class="filter-btn active" onclick="filterCerts('all', this)">All</button>
+          <button class="filter-btn" onclick="filterCerts('AI & Machine Learning', this)">AI & ML</button>
+          <button class="filter-btn" onclick="filterCerts('Data Analysis', this)">Data Analysis</button>
+          <button class="filter-btn" onclick="filterCerts('Web Development', this)">Web Dev</button>
+          <button class="filter-btn" onclick="filterCerts('Data Science', this)">Data Science</button>
+        </div>
+        <div class="cards-grid" id="certs-grid"></div>
+      </div>
+
+      <!-- DOWNLOAD -->
+      <div class="page" id="page-download">
+        <div class="page-header">
+          <div>
+            <h2>DOWNLOAD <span>data.js</span></h2>
+            <p>Generate & download file data terbaru</p>
+          </div>
+        </div>
+        <div class="dl-section">
+          <h3>⬇ DOWNLOAD <span>data.js</span></h3>
+          <p>Klik tombol di bawah untuk men-download file <code>data.js</code> yang berisi semua data project dan sertifikat terkini. File ini akan menggantikan <code>data.js</code> lama di folder portfolio kamu.</p>
+          <button class="dl-btn" onclick="downloadDataJS()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download data.js
+          </button>
+          <div class="steps-list">
+            <h4>Langkah selanjutnya setelah download</h4>
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <div>Buka folder repo GitHub kamu di komputer. Cari file <strong>data.js</strong> lama.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <div>Replace dengan file <strong>data.js</strong> yang baru saja kamu download dari sini.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <div>Jalankan perintah: <code>git add data.js</code> → <code>git commit -m "update data"</code> → <code>git push</code></div>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <div>Tunggu ±1 menit, lalu buka GitHub Pages kamu — portfolio langsung update! 🎉</div>
+            </div>
+          </div>
+        </div>
+        <div class="dl-section">
+          <h3>👁 <span>PREVIEW</span> data.js</h3>
+          <p style="margin-bottom: 10px">Preview isi file yang akan di-download:</p>
+          <div class="preview-box" id="preview-code"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- PROJECT MODAL -->
+    <div class="modal-overlay" id="proj-modal">
+      <div class="modal-box">
+        <h3 id="proj-modal-title">ADD <span>PROJECT</span></h3>
+        <input type="hidden" id="proj-edit-key" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="proj-cat">
+              <option value="ai">AI & Machine Learning</option>
+              <option value="data">Data Analysis</option>
+              <option value="web">Web Development</option>
+              <option value="science">Data Science</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Year</label><input type="text" id="proj-year" placeholder="2025" /></div>
+        </div>
+        <div class="form-group"><label>Project Name</label><input type="text" id="proj-name" placeholder="My Awesome Project" /></div>
+        <div class="form-group"><label>Description</label><textarea id="proj-desc" placeholder="Describe what this project does..."></textarea></div>
+        <div class="form-group">
+          <label>Tech Stack — tekan Enter atau koma untuk tambah tag</label>
+          <div class="stack-input-wrapper" id="stack-wrapper" onclick="document.getElementById('stack-raw').focus()">
+            <input type="text" id="stack-raw" placeholder="e.g. Python" autocomplete="off" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>GitHub URL</label><input type="text" id="proj-github" placeholder="https://github.com/..." /></div>
+          <div class="form-group"><label>Presentation / Drive URL</label><input type="text" id="proj-ppt" placeholder="https://drive.google.com/..." /></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal('proj-modal')">Cancel</button>
+          <button class="btn-save" onclick="saveProject()">Save Project</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATE MODAL -->
+    <div class="modal-overlay" id="cert-modal">
+      <div class="modal-box">
+        <h3 id="cert-modal-title">ADD <span>CERTIFICATE</span></h3>
+        <input type="hidden" id="cert-edit-key" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="cert-cat">
+              <option value="AI & Machine Learning">AI & Machine Learning</option>
+              <option value="Data Analysis">Data Analysis</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Data Science">Data Science</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Year</label><input type="text" id="cert-year" placeholder="2025" /></div>
+        </div>
+        <div class="form-group"><label>Certificate Title</label><input type="text" id="cert-title" placeholder="Machine Learning Specialization" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Issuer</label><input type="text" id="cert-issuer" placeholder="Coursera – DeepLearning.AI" /></div>
+          <div class="form-group"><label>Platform</label><input type="text" id="cert-platform" placeholder="Coursera" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Field</label><input type="text" id="cert-field" placeholder="AI & ML" /></div>
+          <div class="form-group"><label>Credential ID</label><input type="text" id="cert-credid" placeholder="ABC123XYZ" /></div>
+        </div>
+        <div class="form-group"><label>Certificate Verification Link</label><input type="text" id="cert-link" placeholder="https://coursera.org/verify/..." /></div>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal('cert-modal')">Cancel</button>
+          <button class="btn-save" onclick="saveCert()">Save Certificate</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      /* ── semua data diambil dari data.js yang sudah di-load ── */
+      /* buat deep copy agar edit di admin tidak langsung ubah object asli */
+      let projects = JSON.parse(JSON.stringify(projectData));
+      let certs = JSON.parse(JSON.stringify(certsData));
+
+      let currentStackTags = [];
+      let currentProjFilter = "all";
+      let currentCertFilter = "all";
+      const catLabels = { ai: "AI & ML", data: "Data Analysis", web: "Web Development", science: "Data Science" };
+
+      /* ── NAVIGATION ── */
+      function switchPage(page) {
+        document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+        document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
+        document.getElementById("page-" + page).classList.add("active");
+        const navMap = { dashboard: "Dashboard", projects: "Projects", certificates: "Certificates", download: "Download" };
+        document.querySelectorAll(".nav-item").forEach((n) => {
+          if (n.textContent.trim() === navMap[page]) n.classList.add("active");
+        });
+        if (page === "projects") renderProjects();
+        if (page === "certificates") renderCerts();
+        if (page === "download") renderPreview();
+        if (page === "dashboard") updateStats();
+      }
+
+      /* ── STATS ── */
+      function updateStats() {
+        document.getElementById("stat-projects").textContent = Object.values(projects).reduce((s, c) => s + c.projects.length, 0);
+        document.getElementById("stat-certs").textContent = Object.keys(certs).length;
+        document.getElementById("stat-linked").textContent = Object.values(certs).filter((c) => c.link && c.link !== "#").length;
+      }
+
+      /* ── PROJECTS ── */
+      function filterProjects(cat, btn) {
+        currentProjFilter = cat;
+        document.querySelectorAll("#page-projects .filter-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProjects();
+      }
+
+      function renderProjects() {
+        const grid = document.getElementById("projects-grid");
+        grid.innerHTML = "";
+        let count = 0;
+        Object.entries(projects).forEach(([catKey, catObj]) => {
+          if (currentProjFilter !== "all" && currentProjFilter !== catKey) return;
+          catObj.projects.forEach((p) => {
+            count++;
+            const card = document.createElement("div");
+            card.className = "data-card";
+            card.innerHTML = `
+        <div class="card-tag">${catLabels[catKey]}</div>
+        <h4>${p.name}</h4>
+        <p>${p.desc.length > 110 ? p.desc.slice(0, 110) + "…" : p.desc}</p>
+        <div class="card-meta">
+          <span class="meta-pill">📅 ${p.year}</span>
+          ${p.stack
+            .slice(0, 3)
+            .map((s) => `<span class="meta-pill">${s}</span>`)
+            .join("")}
+        </div>
+        <div class="card-actions">
+          <button onclick="editProject('${catKey}','${p.id}')">✏ Edit</button>
+          <button class="del" onclick="deleteProject('${catKey}','${p.id}')">🗑 Delete</button>
+        </div>`;
+            grid.appendChild(card);
+          });
+        });
+        if (!count) grid.innerHTML = `<div class="empty-state"><div class="big">EMPTY</div><p>Belum ada project. Tambah sekarang!</p></div>`;
+      }
+
+      function openProjectModal(catKey, id) {
+        clearStackTags();
+        document.getElementById("proj-edit-key").value = "";
+        document.getElementById("proj-modal-title").innerHTML = "ADD <span>PROJECT</span>";
+        ["proj-name", "proj-desc", "proj-github"].forEach((i) => (document.getElementById(i).value = ""));
+        document.getElementById("proj-year").value = new Date().getFullYear();
+        document.getElementById("proj-ppt").value = "#";
+        document.getElementById("proj-cat").value = catKey || "ai";
+        if (catKey && id) {
+          const p = projects[catKey]?.projects.find((x) => x.id === id);
+          if (p) {
+            document.getElementById("proj-modal-title").innerHTML = "EDIT <span>PROJECT</span>";
+            document.getElementById("proj-edit-key").value = catKey + "|" + id;
+            document.getElementById("proj-name").value = p.name;
+            document.getElementById("proj-desc").value = p.desc;
+            document.getElementById("proj-year").value = p.year;
+            document.getElementById("proj-github").value = p.github;
+            document.getElementById("proj-ppt").value = p.ppt;
+            document.getElementById("proj-cat").value = catKey;
+            p.stack.forEach(addStackTag);
+          }
+        }
+        document.getElementById("proj-modal").classList.add("open");
+      }
+
+      function editProject(c, i) {
+        openProjectModal(c, i);
+      }
+
+      function deleteProject(catKey, id) {
+        if (!confirm("Hapus project ini?")) return;
+        projects[catKey].projects = projects[catKey].projects.filter((p) => p.id !== id);
+        renderProjects();
+        updateStats();
+        showToast("Project dihapus!");
+      }
+
+      function saveProject() {
+        const name = document.getElementById("proj-name").value.trim();
+        const desc = document.getElementById("proj-desc").value.trim();
+        const year = document.getElementById("proj-year").value.trim();
+        const github = document.getElementById("proj-github").value.trim() || "#";
+        const ppt = document.getElementById("proj-ppt").value.trim() || "#";
+        const cat = document.getElementById("proj-cat").value;
+        const editKey = document.getElementById("proj-edit-key").value;
+        if (!name) {
+          alert("Nama project wajib diisi!");
+          return;
+        }
+        const newP = {
+          id: editKey
+            ? editKey.split("|")[1]
+            : name
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/-$/, ""),
+          name,
+          desc,
+          year,
+          stack: [...currentStackTags],
+          github,
+          ppt,
+        };
+        if (editKey) {
+          const [oldCat, oldId] = editKey.split("|");
+          if (oldCat !== cat) {
+            projects[oldCat].projects = projects[oldCat].projects.filter((p) => p.id !== oldId);
+            projects[cat].projects.push(newP);
+          } else {
+            const idx = projects[cat].projects.findIndex((p) => p.id === oldId);
+            if (idx !== -1) projects[cat].projects[idx] = newP;
+          }
+        } else {
+          projects[cat].projects.push(newP);
+        }
+        closeModal("proj-modal");
+        renderProjects();
+        updateStats();
+        showToast(editKey ? "Project diperbarui! ✦" : "Project ditambahkan! ✦");
+      }
+
+      function clearStackTags() {
+        currentStackTags = [];
+        document
+          .getElementById("stack-wrapper")
+          .querySelectorAll(".stack-tag")
+          .forEach((t) => t.remove());
+      }
+      function addStackTag(val) {
+        val = val.trim();
+        if (!val || currentStackTags.includes(val)) return;
+        currentStackTags.push(val);
+        const wrapper = document.getElementById("stack-wrapper");
+        const input = document.getElementById("stack-raw");
+        const tag = document.createElement("span");
+        tag.className = "stack-tag";
+        tag.innerHTML = `${val}<button type="button" onclick="removeStackTag('${val}',this)">×</button>`;
+        wrapper.insertBefore(tag, input);
+        input.value = "";
+      }
+      function removeStackTag(val, btn) {
+        currentStackTags = currentStackTags.filter((t) => t !== val);
+        btn.parentElement.remove();
+      }
+
+      /* ── CERTIFICATES ── */
+      function filterCerts(cat, btn) {
+        currentCertFilter = cat;
+        document.querySelectorAll("#page-certificates .filter-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderCerts();
+      }
+
+      function renderCerts() {
+        const grid = document.getElementById("certs-grid");
+        grid.innerHTML = "";
+        let count = 0;
+        Object.entries(certs).forEach(([key, c]) => {
+          if (currentCertFilter !== "all" && c.category !== currentCertFilter) return;
+          count++;
+          const hasLink = c.link && c.link !== "#";
+          const card = document.createElement("div");
+          card.className = "data-card";
+          card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div class="card-tag">${c.category}</div>
+        <span class="link-status ${hasLink ? "linked" : "unlinked"}">${hasLink ? "✓ linked" : "! no link"}</span>
+      </div>
+      <h4>${c.title}</h4>
+      <p>${c.issuer} · ${c.platform}</p>
+      <div class="card-meta">
+        <span class="meta-pill">📅 ${c.year}</span>
+        <span class="meta-pill">🔑 ${c.credID.length > 20 ? c.credID.slice(0, 20) + "…" : c.credID}</span>
+      </div>
+      <div class="card-actions">
+        <button onclick="editCert('${key}')">✏ Edit</button>
+        <button class="del" onclick="deleteCert('${key}')">🗑 Delete</button>
+      </div>`;
+          grid.appendChild(card);
+        });
+        if (!count) grid.innerHTML = `<div class="empty-state"><div class="big">EMPTY</div><p>Belum ada sertifikat. Tambah sekarang!</p></div>`;
+      }
+
+      function openCertModal(key) {
+        document.getElementById("cert-edit-key").value = "";
+        document.getElementById("cert-modal-title").innerHTML = "ADD <span>CERTIFICATE</span>";
+        ["cert-title", "cert-issuer", "cert-platform", "cert-field", "cert-credid", "cert-link"].forEach((id) => (document.getElementById(id).value = ""));
+        document.getElementById("cert-year").value = new Date().getFullYear();
+        document.getElementById("cert-cat").value = "AI & Machine Learning";
+        if (key && certs[key]) {
+          const c = certs[key];
+          document.getElementById("cert-modal-title").innerHTML = "EDIT <span>CERTIFICATE</span>";
+          document.getElementById("cert-edit-key").value = key;
+          document.getElementById("cert-cat").value = c.category;
+          document.getElementById("cert-title").value = c.title;
+          document.getElementById("cert-issuer").value = c.issuer;
+          document.getElementById("cert-year").value = c.year;
+          document.getElementById("cert-platform").value = c.platform;
+          document.getElementById("cert-field").value = c.field;
+          document.getElementById("cert-credid").value = c.credID;
+          document.getElementById("cert-link").value = c.link;
+        }
+        document.getElementById("cert-modal").classList.add("open");
+      }
+
+      function editCert(key) {
+        openCertModal(key);
+      }
+
+      function deleteCert(key) {
+        if (!confirm("Hapus sertifikat ini?")) return;
+        delete certs[key];
+        renderCerts();
+        updateStats();
+        showToast("Sertifikat dihapus!");
+      }
+
+      function saveCert() {
+        const title = document.getElementById("cert-title").value.trim();
+        const issuer = document.getElementById("cert-issuer").value.trim();
+        if (!title || !issuer) {
+          alert("Title dan issuer wajib diisi!");
+          return;
+        }
+        const editKey = document.getElementById("cert-edit-key").value;
+        const key =
+          editKey ||
+          title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .slice(0, 20) +
+            "-" +
+            Date.now().toString().slice(-4);
+        certs[key] = {
+          category: document.getElementById("cert-cat").value,
+          title,
+          issuer,
+          year: document.getElementById("cert-year").value.trim(),
+          platform: document.getElementById("cert-platform").value.trim(),
+          field: document.getElementById("cert-field").value.trim(),
+          credID: document.getElementById("cert-credid").value.trim(),
+          link: document.getElementById("cert-link").value.trim() || "#",
+        };
+        closeModal("cert-modal");
+        renderCerts();
+        updateStats();
+        showToast(editKey ? "Sertifikat diperbarui! ✦" : "Sertifikat ditambahkan! ✦");
+      }
+
+      /* ── MODAL HELPERS ── */
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+      }
+      document.querySelectorAll(".modal-overlay").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.target === el) el.classList.remove("open");
+        });
+      });
+
+      /* ── GENERATE data.js ── */
+      function esc(s) {
+        return (s || "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+      }
+
+      function generateDataJS() {
+        let o = `/* ═══════════════════════════════════════════════════\n   data.js  —  Anisa Portfolio Data\n   Edit via admin.html, lalu download & replace file ini\n   ═══════════════════════════════════════════════════ */\n\n`;
+
+        o += `const projectData = {\n`;
+        Object.entries(projects).forEach(([cat, obj]) => {
+          o += `  ${cat}: {\n    label: '${esc(obj.label)}',\n    projects: [\n`;
+          obj.projects.forEach((p) => {
+            o += `      { id: '${esc(p.id)}', name: '${esc(p.name)}', year: '${esc(p.year)}', desc: '${esc(p.desc)}', stack: [${p.stack.map((s) => `'${esc(s)}'`).join(", ")}], github: '${esc(p.github)}', ppt: '${esc(p.ppt)}' },\n`;
+          });
+          o += `    ]\n  },\n`;
+        });
+        o += `};\n\nconst certsData = {\n`;
+        Object.entries(certs).forEach(([key, c]) => {
+          o += `  '${esc(key)}': { category: '${esc(c.category)}', title: '${esc(c.title)}', issuer: '${esc(c.issuer)}', year: '${esc(c.year)}', platform: '${esc(c.platform)}', field: '${esc(c.field)}', credID: '${esc(c.credID)}', link: '${esc(c.link)}' },\n`;
+        });
+        o += `};\n`;
+        return o;
+      }
+
+      function downloadDataJS() {
+        const content = generateDataJS();
+        const blob = new Blob([content], { type: "text/javascript" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "data.js";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("data.js berhasil di-download! ✦");
+      }
+
+      function renderPreview() {
+        document.getElementById("preview-code").textContent = generateDataJS();
+      }
+
+      /* ── TOAST ── */
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2200);
+      }
+
+      /* ── INIT ── */
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("stack-raw").addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === ",") {
+            e.preventDefault();
+            addStackTag(e.target.value);
+          }
+        });
+        updateStats();
+      });
+    </script>
+  </body>
+</html>

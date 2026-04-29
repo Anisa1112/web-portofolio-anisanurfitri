@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Anisa Nur Fitri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="data.js"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">ANISA.</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hire-btn" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Hire Me</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">✦ Creative Visual Portfolio</div>
+      <h1>PORT<span>O</span><br /><span class="outline">FOLIO</span></h1>
+      <p class="hero-sub">Hi, I'm <span class="hero-name">Anisa Nur Fitri</span> — a data-driven developer crafting intelligent and scalable digital experiences.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({ behavior: 'smooth' })">View My Work</button>
+        <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Contact Me</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-wrapper">
+        <div class="hero-img-bg"></div>
+        <img src="anisa.jpeg" class="hero-img" alt="Profile Photo" />
+        <div class="hero-badge"><strong>15+</strong><span>Projects Done</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>WEB DEVELOPMENT</span><span>✦</span><span>DATA SCIENCE</span><span>✦</span><span>AI & MACHINE LEARNING</span><span>✦</span><span>DATA ANALYSIS</span><span>✦</span>
+      <span>WEB DEVELOPMENT</span><span>✦</span><span>DATA SCIENCE</span><span>✦</span><span>AI & MACHINE LEARNING</span><span>✦</span><span>DATA ANALYSIS</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-img-side">
+      <div style="position:relative;display:inline-block">
+        <div class="about-img-accent"></div>
+        <img class="about-img" src="anisa.jpeg" alt="About Photo" />
+      </div>
+      <div class="contact-card">
+        <h4>✦ Let's Work Together</h4>
+        <div class="contact-item"><div class="icon">@</div><span><a href="mailto:anisanurfitri300@gmail.com">anisanurfitri300@gmail.com</a></span></div>
+        <div class="contact-item"><div class="icon">☎</div><span><a href="tel:+6282282110287">+62 822-8211-0287</a></span></div>
+        <div class="contact-item"><div class="icon">in</div><span><a href="https://www.linkedin.com/in/anisanurfitri" target="_blank">linkedin.com/in/anisanurfitri</a></span></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-label">✦ About Me</div>
+      <h2>"HELLO.<span> I'M</span><br />ANISA NUR FITRI."</h2>
+      <p>I'm a data-driven developer with experience in web development, data analysis, and machine learning. I enjoy transforming complex data and real-world problems into intelligent, scalable digital solutions.</p>
+      <p>My approach combines strong analytical thinking with technical execution, ensuring every project is not only functional and efficient, but also impactful and meaningful.</p>
+      <div class="about-grid">
+        <div>
+          <h3>Education</h3>
+          <div class="edu-item">
+            <span class="year">2021 – 2025</span>
+            <strong>Computer Engineering</strong>
+            <span>Andalas University</span>
+            <span class="gpa">GPA: 3.64 / 4.00</span>
+          </div>
+        </div>
+        <div>
+          <h3>Software Skills</h3>
+          <div class="skills-grid">
+            <span class="skill-tag">Python</span><span class="skill-tag">Machine Learning</span><span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">SQL</span><span class="skill-tag">Power BI</span><span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span><span class="skill-tag">Tableau</span><span class="skill-tag">Microsoft Office</span><span class="skill-tag">Git</span>
+          </div>
+        </div>
+        <div>
+          <h3>Experience</h3>
+          <div class="exp-item">
+            <span class="year">Nov 2025 – Now</span>
+            <strong>Asisten Pengelola Pertanian</strong>
+            <span>PUSDATIN Kementerian Pertanian</span>
+          </div>
+          <div class="exp-item">
+            <span class="year">Jan 2024 – Feb 2024</span>
+            <strong>Frontend Developer</strong>
+            <span>CV Putra Anugrah Mandiri</span>
+          </div>
+        </div>
+        <div>
+          <h3>Organizational Experience</h3>
+          <div class="exp-item">
+            <span class="year">Jan 2024 – Feb 2025</span>
+            <strong>Research and Development (Division Coordinator)</strong>
+            <span>HIMATEKOM Andalas University</span>
+          </div>
+          <div class="exp-item">
+            <span class="year">Sept 2023 – Jul 2025</span>
+            <strong>Laboratory Assistant</strong>
+            <span>Laboratory Robotic and Embedded System</span>
+          </div>
+          <div class="exp-item">
+            <span class="year">Apr 2023 – Dec 2023</span>
+            <strong>Member Of Human Resource Development Division</strong>
+            <span>HIMATEKOM Andalas University</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <span class="label">✦ What I Do</span>
+      <h2>MY EXPERT <span>SERVICES</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">💻</div><h4>Web Development</h4><p>Building responsive and user-friendly websites using HTML, CSS, JavaScript, and Python-based frameworks.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h4>Data Analysis</h4><p>Analyzing and visualizing data using Python, SQL, and Power BI to generate actionable insights and support data-driven decisions.</p></div>
+      <div class="service-card"><div class="service-icon">🤖</div><h4>Machine Learning</h4><p>Building predictive models and intelligent systems using machine learning techniques for real-world problem solving.</p></div>
+      <div class="service-card"><div class="service-icon">🧠</div><h4>Data Science Solutions</h4><p>Transforming raw data into scalable digital solutions by combining analytics, modeling, and software development.</p></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="work">
+    <div class="section-header">
+      <span class="label">✦ My Work</span>
+      <h2>FEATURED <span>PROJECTS</span></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card" onclick="openProjectList('ai')"><div class="project-info"><div class="tag">AI & ML</div><h4>Artificial Intelligence</h4></div></div>
+      <div class="project-card" onclick="openProjectList('data')"><div class="project-info"><div class="tag">Data Analysis</div><h4>Data Analytics</h4></div></div>
+      <div class="project-card" onclick="openProjectList('web')"><div class="project-info"><div class="tag">Web Development</div><h4>Web Projects</h4></div></div>
+      <div class="project-card" onclick="openProjectList('science')"><div class="project-info"><div class="tag">Data Science</div><h4>Data Science</h4></div></div>
+    </div>
+  </section>
+
+  <!-- PROJECT LIST MODAL -->
+  <div class="projlist-overlay" id="projListModal" onclick="closeProjListOutside(event)">
+    <div class="projlist-box">
+      <div class="projlist-head">
+        <div>
+          <span class="modal-tag" id="plTag" style="display:inline-block;margin-bottom:8px">AI & ML</span>
+          <h3 id="plTitle" style="font-size:22px;color:#ffffff;margin:0">Projects</h3>
+        </div>
+        <button class="projlist-close" onclick="closeProjList()">✕</button>
+      </div>
+      <div class="projlist-items" id="projItemsGrid"></div>
+    </div>
+  </div>
+
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="modal-overlay" id="projectModal" onclick="closeModalOutside(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button onclick="backToList()" style="background:none;border:none;font-size:12px;color:#999;cursor:pointer;margin-bottom:12px;padding:0;display:inline-flex;align-items:center;gap:4px;">← Back to list</button>
+      <span class="modal-tag" id="modalTag">AI & ML</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <div class="modal-links">
+        <a class="modal-btn github" id="modalGithub" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repo
+        </a>
+        <a class="modal-btn ppt" id="modalPPT" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          Presentation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATES -->
+  <section class="certificates" id="certificates">
+    <div class="section-header">
+      <span class="label">✦ Credentials</span>
+      <h2>MY <span>CERTIFICATES</span></h2>
+    </div>
+    <div class="cert-tabs">
+      <button class="cert-tab active" onclick="switchTab('all',event)">All</button>
+      <button class="cert-tab" onclick="switchTab('ai',event)">AI & Machine Learning</button>
+      <button class="cert-tab" onclick="switchTab('data',event)">Data Analysis</button>
+      <button class="cert-tab" onclick="switchTab('web',event)">Web Development</button>
+      <button class="cert-tab" onclick="switchTab('science',event)">Data Science</button>
+    </div>
+    <div id="cert-panels"></div>
+  </section>
+
+  <!-- CERTIFICATE DETAIL MODAL -->
+  <div class="cert-modal-overlay" id="certModal" onclick="closeCertModalOutside(event)">
+    <div class="cert-modal-box">
+      <button class="cert-modal-close" onclick="closeCertModal()">✕</button>
+      <div class="cert-modal-banner">
+        <div class="cert-modal-emoji" id="cmEmoji">🎓</div>
+        <div class="cert-modal-seal" id="cmCategory">Category</div>
+      </div>
+      <div class="cert-modal-body">
+        <h3 id="cmTitle"></h3>
+        <p class="cm-issuer" id="cmIssuer"></p>
+        <div class="cert-modal-meta">
+          <div class="cert-meta-pill">📅 Issued: <span id="cmYear"></span></div>
+          <div class="cert-meta-pill">🏛️ Platform: <span id="cmPlatform"></span></div>
+          <div class="cert-meta-pill">🗂️ Field: <span id="cmField"></span></div>
+        </div>
+        <div class="cert-id-box">
+          <div><span class="label">Credential ID</span><span class="value" id="cmCredID"></span></div>
+          <button class="cert-id-copy" onclick="copyCredID()">Copy ID</button>
+        </div>
+        <div class="cert-modal-actions">
+          <a class="cert-view-btn primary" id="cmViewLink" href="#" target="_blank">🔗 View Certificate</a>
+          <button class="cert-view-btn secondary" onclick="closeCertModal()">✕ Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <span class="label">✦ Get In Touch</span>
+      <h2>LET'S <span>WORK</span> TOGETHER</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Have a project in <span>mind?</span></h3>
+        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+        <div class="contact-detail"><div class="ic">@</div><div class="text"><p>Email</p><strong>anisanurfitri300@gmail.com</strong></div></div>
+        <div class="contact-detail"><div class="ic">☎</div><div class="text"><p>Phone</p><strong>+62 822-8211-0287</strong></div></div>
+        <div class="contact-detail"><div class="ic">📍</div><div class="text"><p>Location</p><strong>Jakarta, Indonesia</strong></div></div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Name</label><input type="text" placeholder="John Doe" /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="john@example.com" /></div>
+        </div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="Project Inquiry" /></div>
+        <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Tell me about your project..."></textarea></div>
+        <button class="submit-btn">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">PORTO.</div>
+    <p>© 2025 Anisa Nur Fitri. All rights reserved.</p>
+    <div class="social-links"><a href="#">in</a><a href="#">gh</a><a href="#">ig</a></div>
+  </footer>
+
+  <script>
+  /* ── CERT TAB MAP ── */
+  const certTabMap = {
+    'AI & Machine Learning': 'ai',
+    'Data Analysis': 'data',
+    'Web Development': 'web',
+    'Data Science': 'science'
+  };
+
+  /* ── RENDER CERTIFICATES dari data.js ── */
+  function renderCertPanels() {
+    const container = document.getElementById('cert-panels');
+    const tabs = { all: [], ai: [], data: [], web: [], science: [] };
+
+    Object.entries(certsData).forEach(([key, c]) => {
+      const tabKey = certTabMap[c.category] || 'all';
+      const card = `<div class="cert-card" onclick="openCertModal('${key}')">
+        <span class="cert-icon"></span>
+        <h4>${c.title}</h4>
+        <p class="cert-issuer">${c.issuer}</p>
+        <span class="cert-year">${c.year}</span>
+      </div>`;
+      tabs.all.push(card);
+      if (tabs[tabKey] !== undefined) tabs[tabKey].push(card);
+    });
+
+    const tabOrder = ['all', 'ai', 'data', 'web', 'science'];
+    container.innerHTML = tabOrder.map(tab =>
+      `<div class="cert-panel cert-grid${tab === 'all' ? ' active' : ''}" id="tab-${tab}">${tabs[tab].join('')}</div>`
+    ).join('');
+  }
+
+  /* ── PROJECT MODAL ── */
+  let currentCategory = null;
+
+  function openProjectList(cat) {
+    const catData = projectData[cat];
+    if (!catData) return;
+    currentCategory = cat;
+    document.getElementById('plTag').textContent = catData.label;
+    document.getElementById('plTitle').textContent = catData.label + ' Projects';
+    document.getElementById('projItemsGrid').innerHTML = catData.projects.map(p => `
+      <div class="projlist-card" onclick="openProjectDetail('${cat}','${p.id}')">
+        <div class="plc-year">${p.year}</div>
+        <div class="plc-name">${p.name}</div>
+        <div class="plc-desc">${p.desc.length > 90 ? p.desc.slice(0,90)+'…' : p.desc}</div>
+        <div class="plc-stack">${p.stack.slice(0,3).map(s=>`<span>${s}</span>`).join('')}</div>
+        <span class="plc-arrow">↗</span>
+      </div>
+    `).join('');
+    document.getElementById('projListModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProjList() {
+    document.getElementById('projListModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeProjListOutside(e) {
+    if (e.target === document.getElementById('projListModal')) closeProjList();
+  }
+
+  function openProjectDetail(cat, id) {
+    const p = projectData[cat].projects.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('modalTag').textContent   = projectData[cat].label;
+    document.getElementById('modalTitle').textContent = p.name;
+    document.getElementById('modalDesc').textContent  = p.desc;
+    document.getElementById('modalGithub').href       = p.github;
+    document.getElementById('modalPPT').href          = p.ppt;
+    document.getElementById('projListModal').classList.remove('active');
+    document.getElementById('projectModal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('projectModal').classList.remove('active');
+    document.body.style.overflow = '';
+    currentCategory = null;
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('projectModal')) closeModal();
+  }
+
+  function backToList() {
+    document.getElementById('projectModal').classList.remove('active');
+    if (currentCategory) openProjectList(currentCategory);
+  }
+
+  /* ── CERT MODAL ── */
+  function openCertModal(key) {
+    const c = certsData[key];
+    if (!c) return;
+    document.getElementById('cmCategory').textContent = c.category;
+    document.getElementById('cmTitle').textContent    = c.title;
+    document.getElementById('cmIssuer').textContent   = c.issuer;
+    document.getElementById('cmYear').textContent     = c.year;
+    document.getElementById('cmPlatform').textContent = c.platform;
+    document.getElementById('cmField').textContent    = c.field;
+    document.getElementById('cmCredID').textContent   = c.credID;
+    document.getElementById('cmViewLink').href        = c.link;
+    document.getElementById('certModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCertModal() {
+    document.getElementById('certModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeCertModalOutside(e) {
+    if (e.target === document.getElementById('certModal')) closeCertModal();
+  }
+
+  function copyCredID() {
+    const id = document.getElementById('cmCredID').textContent;
+    navigator.clipboard.writeText(id).then(() => {
+      const btn = document.querySelector('.cert-id-copy');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy ID'; }, 1800);
+    });
+  }
+
+  function switchTab(tab, e) {
+    document.querySelectorAll('.cert-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cert-panel').forEach(p => p.classList.remove('active'));
+    if (e && e.target) e.target.classList.add('active');
+    const panel = document.getElementById('tab-' + tab);
+    if (panel) panel.classList.add('active');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeCertModal();
+      if (document.getElementById('projectModal').classList.contains('active')) closeModal();
+      else closeProjList();
+    }
+  });
+
+  /* ── INIT ── */
+  document.addEventListener('DOMContentLoaded', renderCertPanels);
+  </script>
+</body>
+</html>
