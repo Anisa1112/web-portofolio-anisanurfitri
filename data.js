@@ -15,24 +15,16 @@ const projectData = {
   data: {
     label: 'Data Analysis',
     projects: [
-      { id: 'sales', name: 'Sales Analytics Dashboard', year: '2024', desc: 'Interactive sales dashboard built with Power BI & SQL that transforms raw transaction data into actionable business insights — featuring trend analysis, regional performance, and KPI tracking.', stack: ['Power BI', 'SQL', 'DAX', 'Excel'], github: 'https://github.com/anisanurfitri', ppt: '#' },
-      { id: 'covid', name: 'COVID-19 Data Exploration', year: '2023', desc: 'Exploratory analysis of Indonesia COVID-19 data including vaccination correlation analysis and time-series forecasting of case trends.', stack: ['Python', 'Pandas', 'Matplotlib', 'Tableau'], github: 'https://github.com/anisanurfitri', ppt: '#' },
     ]
   },
   web: {
     label: 'Web Development',
     projects: [
-      { id: 'portfolio', name: 'Responsive Portfolio Website', year: '2025', desc: 'A modern, fully responsive personal portfolio built with HTML, CSS & JavaScript. Features smooth animations, interactive sections, and a clean editorial design system.', stack: ['HTML', 'CSS', 'JavaScript'], github: 'https://github.com/anisanurfitri', ppt: '#' },
-      { id: 'ecommerce', name: 'E-Commerce Landing Page', year: '2024', desc: 'Responsive e-commerce landing page for CV Putra Anugrah Mandiri with product showcase, order form, and WhatsApp integration for optimal customer conversion.', stack: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'], github: 'https://github.com/anisanurfitri', ppt: '#' },
-      { id: 'inventory', name: 'Inventory Management System', year: '2023', desc: 'Web-based inventory management app with full CRUD, stock reports, and low-stock notifications using Flask backend and SQLite database.', stack: ['Python', 'Flask', 'SQLite', 'Bootstrap'], github: 'https://github.com/anisanurfitri', ppt: '#' },
     ]
   },
   science: {
     label: 'Data Science',
     projects: [
-      { id: 'predictive', name: 'Predictive Modeling with Student Data', year: '2025', desc: 'End-to-end data science pipeline using Python — from exploratory data analysis and feature engineering to building and evaluating predictive models for real-world classification and regression problems.', stack: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas'], github: 'https://github.com/anisanurfitri', ppt: '#' },
-      { id: 'crop', name: 'Crop Yield Prediction', year: '2024', desc: 'Harvest yield prediction model using climate, rainfall, and soil data from PUSDATIN Ministry of Agriculture. Helps farmers optimize planting season planning.', stack: ['Python', 'Random Forest', 'Streamlit', 'Pandas'], github: 'https://github.com/anisanurfitri', ppt: '#' },
-      { id: 'customer', name: 'Customer Segmentation', year: '2023', desc: 'Customer segmentation using K-Means Clustering on retail dataset. Produces 4 customer segments with clear behavioral profiles to support targeted marketing strategy.', stack: ['Python', 'K-Means', 'PCA', 'Tableau'], github: 'https://github.com/anisanurfitri', ppt: '#' },
     ]
   },
 };
