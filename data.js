@@ -25,6 +25,7 @@ const projectData = {
   science: {
     label: 'Data Science',
     projects: [
+      { id: 'predictive-modeling-with-student-data', name: 'Predictive Modeling with Student Data', year: '2025', desc: 'This project focuses on predicting students’ academic performance using machine learning based on non-cognitive factors such as study hours, attendance, teacher quality, motivation, sleep, prior scores, and tutoring. A Linear Regression model is used to estimate exam scores, and an interactive Streamlit dashboard enables users to simulate predictions and receive study recommendations.', stack: ['Python', 'Data Science', 'Linear Regression', 'Streamlit'], github: 'https://github.com/Anisa1112/Predictive-Modeling-with-Student-Data-.git', ppt: '#' },
     ]
   },
 };
