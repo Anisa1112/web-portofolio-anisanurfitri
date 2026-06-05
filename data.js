@@ -22,21 +22,15 @@ const projectData = {
   web: {
     label: 'Web Development',
     projects: [
-      { id: 'e-banper-electronic-agricultural-assistance-management-system', name: 'E-Banper (Electronic Agricultural Assistance Management System)', year: '2026', desc: '• Developed a web-based management system for agricultural assistance administration and monitoring 
-• Implemented authentication, role management, reporting, and data management features.  
-• Designed responsive interfaces and optimized database interactions.  
-• Supported data monitoring and operational workflows through digitalized processes.', stack: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'], github: 'https://ebanper.pertanian.go.id/', ppt: '#' },
-      { id: 'queue-management-system', name: 'Queue Management System', year: '2026', desc: '•Developed front-end pages for a web-based queue management application (Project).  
-• Created responsive and user-friendly interfaces for queue monitoring and administration.  
-• Integrated UI components with backend functionalities.  
-• Improved user experience through intuitive navigation and modern design.', stack: ['JavaScript', 'Bootstrap', 'HTML', 'CSS'], github: 'https://github.com/Anisa1112/web-antrian', ppt: '#' },
+      { id: 'e-banper-electronic-agricultural-assistance-management-system', name: 'E-Banper (Electronic Agricultural Assistance Management System)', year: '2026', desc: '• Developed a web-based management system for agricultural assistance administration and monitoring\n• Implemented authentication, role management, reporting, and data management features.\n• Designed responsive interfaces and optimized database interactions.\n• Supported data monitoring and operational workflows through digitalized processes.', stack: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'], github: 'https://ebanper.pertanian.go.id/', ppt: '#' },
+      { id: 'queue-management-system', name: 'Queue Management System', year: '2026', desc: '• Developed front-end pages for a web-based queue management application (Project).\n• Created responsive and user-friendly interfaces for queue monitoring and administration.\n• Integrated UI components with backend functionalities.\n• Improved user experience through intuitive navigation and modern design.', stack: ['JavaScript', 'Bootstrap', 'HTML', 'CSS'], github: 'https://github.com/Anisa1112/web-antrian', ppt: '#' },
       { id: 'website-himatekom', name: 'Website HIMATEKOM', year: '2026', desc: 'Website HIMATEKOM adalah aplikasi web berbasis Laravel yang digunakan sebagai media informasi dan pengelolaan kegiatan organisasi Himpunan Mahasiswa Teknik Komputer. Sistem ini menyediakan fitur seperti publikasi berita, manajemen anggota, dan dokumentasi kegiatan untuk mendukung digitalisasi serta penyebaran informasi secara efisien.', stack: ['Laravel', 'Bootstrap', 'MySQL'], github: 'https://github.com/Anisa1112/web-himatekom', ppt: '#' },
     ]
   },
   science: {
     label: 'Data Science',
     projects: [
-      { id: 'predictive-modeling-with-student-data', name: 'Predictive Modeling with Student Data', year: '2025', desc: 'This project focuses on predicting students’ academic performance using machine learning based on non-cognitive factors such as study hours, attendance, teacher quality, motivation, sleep, prior scores, and tutoring. A Linear Regression model is used to estimate exam scores, and an interactive Streamlit dashboard enables users to simulate predictions and receive study recommendations.', stack: ['Python', 'Data Science', 'Linear Regression', 'Streamlit'], github: 'https://github.com/Anisa1112/Predictive-Modeling-with-Student-Data-.git', ppt: '#' },
+      { id: 'predictive-modeling-with-student-data', name: 'Predictive Modeling with Student Data', year: '2025', desc: 'This project focuses on predicting students\' academic performance using machine learning based on non-cognitive factors such as study hours, attendance, teacher quality, motivation, sleep, prior scores, and tutoring. A Linear Regression model is used to estimate exam scores, and an interactive Streamlit dashboard enables users to simulate predictions and receive study recommendations.', stack: ['Python', 'Data Science', 'Linear Regression', 'Streamlit'], github: 'https://github.com/Anisa1112/Predictive-Modeling-with-Student-Data-.git', ppt: '#' },
     ]
   },
 };
